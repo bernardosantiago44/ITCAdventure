@@ -10,7 +10,7 @@ public class Motion : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        // print("AWAKE!");
     }
 
     // Update is called once per frame
@@ -41,6 +41,9 @@ public class Motion : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
+        if (Input.GetButtonDown("Jump"))
+            print("Jump!");
+
         // The closer the object is from the center,
         // the slower it moves
         float speed = this._speed;
@@ -52,8 +55,37 @@ public class Motion : MonoBehaviour
         transform.Translate(
             horizontal * Time.deltaTime * speed,
             vertical * Time.deltaTime * speed,
-            0
+            0,
+            Space.World // Default - Space.Self
         );
 
+    }
+
+    // COLISIONS
+    // requirement
+    // 1. everyone involved has a collider
+    // 2. someone has a rigidbody
+    // 3. the objetct with the rigidbody is moving
+
+    // https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Collision.html
+
+    void OnCollisionEnter(Collision c)
+    {   
+        print("Oh no! Collision with  " + c.transform.name + "!");
+        SpriteRenderer squareRenderer = GetComponent<SpriteRenderer>();
+        if (squareRenderer != null )
+        {
+            squareRenderer.color = Color.red;
+        }
+    }
+
+    void OnCollisionStay(Collision c)
+    {
+        // print("COLLISION STAY!");
+    }
+
+    void OnCollisionExit(Collision c)
+    {
+        // print("COLLISION EXIT!");
     }
 }
