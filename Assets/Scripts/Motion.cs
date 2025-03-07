@@ -9,13 +9,14 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     private Rigidbody2D rb;
-    private bool isGrounded;
-    private float groundCheckRadius = 0.2f;
+    private int maxJumps = 2;
+    private int jumps = 0;
+    // private float groundCheckRadius = 0.2f; // nse qué es esto
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 1.5f; // Ajusta la escala de gravedad según tus necesidades
+        rb.gravityScale = 1.5f; // Escala de gravedad
     }
 
     void Update()
@@ -30,7 +31,7 @@ public class CharacterController2D : MonoBehaviour
         Vector2 moveVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
         rb.linearVelocity = moveVelocity;
 
-        // Voltear el personaje según la dirección del movimiento
+        // Voltea el personaje según la dirección del movimiento
         if ((moveInput > 0 && transform.localScale.x < 0) || (moveInput < 0 && transform.localScale.x > 0))
         {
             Vector3 newScale = transform.localScale;
@@ -41,12 +42,33 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump()
     {
-        // Verificar si el personaje está tocando el suelo
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (jumps < maxJumps && Input.GetButtonDown("Jump"))
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            jumps++;
+
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Piso"))
+        {
+            jumps = 0;
+        }
+
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            print("Oh no! Collision with " + collision.transform.name);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D trigger)
+    {
+        if (trigger.CompareTag("WinZone"))
+        {
+            print("You Win!");
+            // SceneManager.LoadScene(nextSceneName); // Esto cambia la pantalla 
         }
     }
 
