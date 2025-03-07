@@ -9,8 +9,9 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     private Rigidbody2D rb;
-    private bool isGrounded;
-    private float groundCheckRadius = 0.2f;
+    private int maxJumps = 2;
+    private int jumps = 0;
+    // private float groundCheckRadius = 0.2f;
 
     void Start()
     {
@@ -41,12 +42,20 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump()
     {
-        // Verificar si el personaje está tocando el suelo
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (jumps < maxJumps && Input.GetButtonDown("Jump"))
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            jumps++;
+
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Piso"))
+        {
+            jumps = 0;
         }
     }
 
