@@ -31,7 +31,7 @@ public class CharacterController2D : MonoBehaviour
         rb.linearVelocity = moveVelocity;
 
         // Voltear el personaje según la dirección del movimiento
-        if (moveInput > 0 && transform.localScale.x < 0 || moveInput < 0 && transform.localScale.x > 0)
+        if ((moveInput > 0 && transform.localScale.x < 0) || (moveInput < 0 && transform.localScale.x > 0))
         {
             Vector3 newScale = transform.localScale;
             newScale.x *= -1;
@@ -49,4 +49,32 @@ public class CharacterController2D : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
     }
+
+    // COLISIONS
+    // requirement
+    // 1. everyone involved has a collider
+    // 2. someone has a rigidbody
+    // 3. the objetct with the rigidbody is moving
+
+    // https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Collision.html
+
+    /*void OnCollisionEnter(Collision c)
+    {
+        print("Oh no! Collision with  " + c.transform.name + "!");
+        SpriteRenderer squareRenderer = GetComponent<SpriteRenderer>();
+        if (squareRenderer != null)
+        {
+            squareRenderer.color = Color.red;
+        }
+    }
+
+    void OnCollisionStay(Collision c)
+    {
+        // print("COLLISION STAY!");
+    }
+
+    void OnCollisionExit(Collision c)
+    {
+        // print("COLLISION EXIT!");
+    }*/
 }
