@@ -23,6 +23,7 @@ public class CharacterController2D : MonoBehaviour
     {
         Move();
         Jump();
+        LockRotation();
     }
 
     private void Move()
@@ -48,6 +49,11 @@ public class CharacterController2D : MonoBehaviour
             jumps++;
 
         }
+    }
+
+    private void LockRotation()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
