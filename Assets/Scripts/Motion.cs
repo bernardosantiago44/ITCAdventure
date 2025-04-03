@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterController2D : MonoBehaviour
@@ -8,22 +9,33 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private GameObject _chatgpt;
+    [SerializeField] private GameObject _reference;
+    [SerializeField] private float bulletSpeed = 0.1f;
+
     private Rigidbody2D rb;
     private int maxJumps = 2;
     private int jumps = 0;
     // private float groundCheckRadius = 0.2f; // nse qué es esto
 
+    private IEnumerator _enumeratorShoot;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 1.5f; // Escala de gravedad
+
+        _enumeratorShoot = Shoot();
     }
 
     void Update()
     {
         Move();
         Jump();
+        Shooting();
         LockRotation();
+
+        
     }
 
     private void Move()
@@ -51,6 +63,20 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    private void Shooting()
+    {
+        // Coroutines
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(_enumeratorShoot);
+        }
+
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            StopCoroutine(_enumeratorShoot);
+        }
+    }
+
     private void LockRotation()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -75,6 +101,15 @@ public class CharacterController2D : MonoBehaviour
         {
             print("You Win!");
             // SceneManager.LoadScene(nextSceneName); // Esto cambia la pantalla 
+        }
+    }
+
+    private IEnumerator Shoot()
+    {
+        while (true)
+        {
+            Instantiate(_chatgpt, _reference.transform.position, _reference.transform.rotation);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
