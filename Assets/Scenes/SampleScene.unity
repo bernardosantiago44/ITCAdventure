@@ -230,7 +230,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  _chatgpt: {fileID: 6809419886162986532, guid: b91bdb953582ac645b59adf0bbc0b882, type: 3}
+  _chatgpt: {fileID: 9098867665682564224, guid: ec011addfc322784baea61265430331a, type: 3}
   _reference: {fileID: 1393549569}
 --- !u!50 &103697591
 Rigidbody2D:
