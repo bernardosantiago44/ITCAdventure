@@ -232,7 +232,6 @@ MonoBehaviour:
     m_Bits: 8
   _chatgpt: {fileID: 6809419886162986532, guid: b91bdb953582ac645b59adf0bbc0b882, type: 3}
   _reference: {fileID: 1393549569}
-  bulletSpeed: 0.1
 --- !u!50 &103697591
 Rigidbody2D:
   serializedVersion: 5
@@ -617,7 +616,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1.868449, y: -0.03335476}
+  m_Offset: {x: 0.011894941, y: -0.03335476}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -627,7 +626,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 6.201696, y: 4.8026114}
+  m_Size: {x: 9.962383, y: 4.8026114}
   m_EdgeRadius: 0
 --- !u!212 &710394052
 SpriteRenderer:
@@ -886,7 +885,7 @@ Transform:
   m_GameObject: {fileID: 1393549569}
   serializedVersion: 2
   m_LocalRotation: {x: 0.008726558, y: 0, z: 0, w: 0.999962}
-  m_LocalPosition: {x: 0.28, y: 0.06, z: 0}
+  m_LocalPosition: {x: 0.32, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
