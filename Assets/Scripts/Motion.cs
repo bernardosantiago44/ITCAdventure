@@ -11,7 +11,6 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField] private GameObject _chatgpt;
     [SerializeField] private GameObject _reference;
-    [SerializeField] private float bulletSpeed = 0.1f;
 
     private Rigidbody2D rb;
     private int maxJumps = 2;
