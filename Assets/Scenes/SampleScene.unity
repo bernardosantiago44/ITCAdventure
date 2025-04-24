@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 103697592}
   - component: {fileID: 103697593}
   - component: {fileID: 103697594}
+  - component: {fileID: 103697595}
   m_Layer: 0
   m_Name: Jugador
   m_TagString: Player
@@ -232,6 +233,7 @@ MonoBehaviour:
     m_Bits: 8
   _chatgpt: {fileID: 9098867665682564224, guid: ec011addfc322784baea61265430331a, type: 3}
   _reference: {fileID: 1393549569}
+  jumps: 0
 --- !u!50 &103697591
 Rigidbody2D:
   serializedVersion: 5
@@ -343,6 +345,19 @@ Animation:
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
+--- !u!114 &103697595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103697586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db8731ceede8164d9b6369a90dd96c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 103697590}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
