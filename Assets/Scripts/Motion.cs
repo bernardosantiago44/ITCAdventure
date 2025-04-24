@@ -14,7 +14,7 @@ public class CharacterController2D : MonoBehaviour
 
     private Rigidbody2D rb;
     private int maxJumps = 2;
-    private int jumps = 0;
+    public int jumps = 0;
     // private float groundCheckRadius = 0.2f; // nse qué es esto
 
     private IEnumerator _enumeratorShoot;
