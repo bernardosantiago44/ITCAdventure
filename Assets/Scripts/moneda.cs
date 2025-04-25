@@ -26,7 +26,7 @@ public class Moneda : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            PlayerInformation.Shared.AddCoins(1); // Añade 1 moneda al jugador
+            PlayerInformation.Shared.AddCoins(1); 
             Debug.Log("Moneda recogida. Total monedas: " + PlayerInformation.Shared.Coins);
         }
     }
